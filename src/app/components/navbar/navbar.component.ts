@@ -7,11 +7,11 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [FormsModule, CommonModule, RouterLink, RouterLinkActive],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+    selector: 'app-navbar',
+    standalone: true,
+    imports: [FormsModule, CommonModule, RouterLink, RouterLinkActive],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
   public darkModeService = inject(DarkModeService)

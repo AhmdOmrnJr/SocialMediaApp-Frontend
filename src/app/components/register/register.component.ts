@@ -4,11 +4,11 @@ import { UserService } from '../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+    selector: 'app-register',
+    standalone: true,
+    imports: [FormsModule],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   model: any = {};

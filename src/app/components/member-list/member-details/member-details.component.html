@@ -34,7 +34,8 @@
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="knownAs-tab" data-bs-toggle="tab" data-bs-target="#knownAs-tab-pane"
-                    type="button" role="tab" aria-controls="knownAs-tab-pane" aria-selected="true">About {{member.knownAs}}</button>
+                    type="button" role="tab" aria-controls="knownAs-tab-pane" aria-selected="true">About
+                    {{member.knownAs}}</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link " id="Interests-tab" data-bs-toggle="tab" data-bs-target="#Interests-tab-pane"
@@ -50,22 +51,62 @@
             </li>
         </ul>
 
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content " id="myTabContent">
             <div class="tab-pane fade show active" id="knownAs-tab-pane" role="tabpanel" aria-labelledby="knownAs-tab"
                 tabindex="0">
-                <h4>Description</h4>
+                <h4 class="mt-2">Description</h4>
                 <p>{{member.introduction}}</p>
                 <h4>Looking for</h4>
                 <p>{{member.lookingFor}}</p>
             </div>
-            <div class="tab-pane fade show active" id="Interests-tab-pane" role="tabpanel" aria-labelledby="Interests-tab"
-                tabindex="1"><h4>Description</h4>
+
+            <div class="tab-pane fade show" id="Interests-tab-pane" role="tabpanel" aria-labelledby="Interests-tab"
+                tabindex="1">
+                <h4 class="mt-2">Description</h4>
                 <p>{{member.interests}}</p>
             </div>
-            <div class="tab-pane fade active" id="Photos-tab-pane" role="tabpanel" aria-labelledby="Photos-tab" tabindex="2">
-                <p>Photos will go here</p></div>
-            <div class="tab-pane fade active" id="Messages-tab-pane" role="tabpanel" aria-labelledby="Messages-tab" tabindex="3">
-                <p>Messages will go here</p></div>
+
+            <div class="tab-pane fade" id="Photos-tab-pane" role="tabpanel" aria-labelledby="Photos-tab" tabindex="2">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        @for (image of images; track $index) {
+                        <button type="button" data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="$index"
+                            [class.active]="$index === 0" [attr.aria-label]="'Slide ' + ($index + 1)"></button>
+                        }
+                    </div>
+
+                    <!-- Carousel Items -->
+                    <div class="carousel-inner">
+                        @for (image of images; track $index) {
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                            <img [src]="image" class="d-block w-75" alt="Photo {{ $index + 1 }}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Photo {{ $index + 1 }}</h5>
+                                <p>Description for photo {{ $index + 1 }}</p>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="Messages-tab-pane" role="tabpanel" aria-labelledby="Messages-tab"
+                tabindex="3">
+                <p>Messages will go here</p>
+            </div>
         </div>
     </div>
 </div>

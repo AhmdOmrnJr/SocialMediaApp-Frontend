@@ -1,29 +1,31 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { User } from "../models/user.model";
 import { map } from "rxjs";
+import { environment } from "../../environments/environment";
+import { LoginResponse } from "../models/loginResponse.model";
+import { RegisterResponse } from "../models/registerResponse.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
     private http = inject(HttpClient);
-    baseUrl = 'https://localhost:7023/api/';
-    currentUser = signal<User | null>(null);
+    baseUrl = environment.baseUrl;
+    currentUser = signal<{ firstName: string, token: string } | null>(null);
 
     login(model: any) {
-        return this.http.post<User>(this.baseUrl + 'user/login', model).pipe(
-            map(user => {
-                if (user) {
-                    localStorage.setItem('user', JSON.stringify(user));
-                    this.currentUser.set(user);
+        return this.http.post<LoginResponse>(this.baseUrl + 'user/login', model).pipe(
+            map(res => {
+                if (res) {
+                    localStorage.setItem('user', JSON.stringify(res.result));
+                    this.currentUser.set(res.result ?? null);
                 }
-                return user
+                return res
             })
         );
     }
     register(model: any) {
-        return this.http.post<User>(this.baseUrl + 'user/register', model).pipe(
+        return this.http.post<RegisterResponse>(this.baseUrl + 'user/register', model).pipe(
             map(res => {
                 if (res) {
                     console.log(res);
@@ -38,9 +40,6 @@ export class UserService {
         this.currentUser.set(null);
     }
 
-    getUsers() {
-        return this.http.get<User | null>(this.baseUrl + 'user');
-    }
 }
 
 

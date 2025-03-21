@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RegisterComponent } from "../register/register.component";
-import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -9,28 +8,11 @@ import { UserService } from '../../services/user.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
-  ngOnInit(): void {
-    this.getUsers();
-  }
-
+export class HomeComponent {
   registerMode = false;
-  userService = inject(UserService);
-  users: any = {};
-
 
   RegisterModeToggle(){
     this.registerMode = !this.registerMode
-  }
-
-  getUsers() {
-    this.userService.getUsers().subscribe({
-      next: response => {
-        console.log(response);
-        this.users = response?.result
-      },
-      error: error => console.log(error),
-    })
   }
 
   cancelRegister(event: boolean){

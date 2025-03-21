@@ -30,7 +30,7 @@
                       'btn-dark': darkModeService.isDarkModeEnabled(),
                       'btn-primary': !darkModeService.isDarkModeEnabled()
                     }">
-                    Welcome
+                    Welcome {{ userService.currentUser()?.firstName }}
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item">Edit Profile</a></li>

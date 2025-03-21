@@ -2,48 +2,90 @@
     <h2 class="text-center text-primary mb-3">Register</h2>
     <hr class="w-100">
     <div class="mb-3 w-100">
-        <div class="form-floating mb-3">
-            <input id="fname" type="text" class="form-control" name="firstName" placeholder="First Name"
-                [(ngModel)]="model.firstname" required>
-            <label for="fname" class="form-label">First Name</label>
-        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input id="fname" type="text" class="form-control" name="firstName" placeholder="First Name"
+                        [(ngModel)]="model.firstname" required>
+                    <label for="fname" class="form-label">First Name</label>
+                </div>
 
-        <div class="mb-3 form-floating">
-            <input id="lname" type="text" class="form-control" name="lastName" placeholder="Last Name"
-                [(ngModel)]="model.lastName" required>
-            <label for="lname" class="form-label">Last Name</label>
-        </div>
+                <div class="mb-3 form-floating">
+                    <input id="lname" type="text" class="form-control" name="lastName" placeholder="Last Name"
+                        [(ngModel)]="model.lastName" required>
+                    <label for="lname" class="form-label">Last Name</label>
+                </div>
 
-        <div class="form-floating mb-3">
-            <input id="email" type="email" class="form-control" name="Email" placeholder="email@google.com"
-                [(ngModel)]="model.email" required>
-            <label for="email" class="form-label">Email</label>
-        </div>
+                <div class="form-floating mb-3">
+                    <input id="email" type="email" class="form-control" name="Email" placeholder="text@example.com"
+                        [(ngModel)]="model.Email" required>
+                    <label for="Email" class="form-label">Email</label>
+                </div>
 
-        <div class="form-floating mb-3">
-            <input id="password" type="password" class="form-control" name="password" placeholder="password"
-                [(ngModel)]="model.password" required
-                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
-            @if (registerForm.controls['password']?.errors?.['pattern']) {
-            <div class="text-danger">
-                Password must be at least 8 characters long and include at least one uppercase letter, one lowercase
-                letter, one digit, and one special character.
+                <div class="form-floating mb-3">
+                    <input id="dateOfBirth" type="date" class="form-control" name="dateOfBirth"
+                        [(ngModel)]="model.dateOfBirth" required>
+                    <label for="dateOfBirth" class="form-label">Birthday</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input id="password" type="password" class="form-control" name="password" placeholder="password"
+                        [(ngModel)]="model.password" required
+                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+                    @if (registerForm.controls['password']?.errors?.['pattern']) {
+                    <div class="text-danger">
+                        Password must be at least 8 characters long and include at least one uppercase letter, one
+                        lowercase
+                        letter, one digit, and one special character.
+                    </div>
+                    }
+                    <label for="password" class="form-label">Password</label>
+                </div>
             </div>
-            }
-            <label for="password" class="form-label">Password</label>
-        </div>
 
-        <div class="form-floating mb-3">
-            <input id="confirmPassword" type="password" class="form-control" name="confirmPassword"
-                placeholder="Confirm Password" [(ngModel)]="model.confirmPassword" required>
-            @if (model.password !== model.confirmPassword && registerForm.controls['confirmPassword']?.touched) {
-            <div class="text-danger">
-                Passwords do not match.
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input id="nickName" type="text" class="form-control" name="nickName"
+                        placeholder="What does people call you" [(ngModel)]="model.nickName" required>
+                    <label for="nickName" class="form-label">NickName</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input id="gender" type="text" class="form-control" name="gender" placeholder="gender"
+                        [(ngModel)]="model.gender" required>
+                    <label for="gender" class="form-label">Gender</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input id="country" type="text" class="form-control" name="country" placeholder="Ex: Egypt"
+                        [(ngModel)]="model.country" required>
+                    <label for="country" class="form-label">Country</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input id="city" type="text" class="form-control" name="city" placeholder="Ex: Cairo"
+                        [(ngModel)]="model.city" required>
+                    <label for="city" class="form-label">City</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input id="confirmPassword" type="password" class="form-control" name="confirmPassword"
+                        placeholder="Confirm Password" [(ngModel)]="model.confirmPassword" required>
+                    @if (model.password !== model.confirmPassword && registerForm.controls['confirmPassword']?.touched)
+                    {
+                    <div class="text-danger">
+                        Passwords do not match.
+                    </div>
+                    }
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                </div>
             </div>
-            }
-            <label for="confirmPassword" class="form-label">Confirm Password</label>
         </div>
     </div>
+
+
+
+
 
     <div class="d-flex gap-2">
         <button type="submit" class="btn btn-primary"
